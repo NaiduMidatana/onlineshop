@@ -25,18 +25,15 @@ import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
 @Table(name = "cart")
-public class Cart implements Serializable  {
-	 private static final long serialVersionUID = 1L;
-	    /**
-	     * 
-	     */
+public class Cart  {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "cart_id")
 	private long cartId;
 	
-	@Column(name = "content")
-	private String content;
+	@Column(name = "quantity")
+	private int quantity;
 
 	 
 	 @ManyToOne(fetch = FetchType.LAZY,optional = false)
@@ -45,10 +42,10 @@ public class Cart implements Serializable  {
 	    @JoinColumn(name = "product_id", nullable = false)
 	    private Product product;
 
-	public Cart(long cartId, String content, Product product) {
+	public Cart(long cartId, int quantity, Product product) {
 		super();
 		this.cartId = cartId;
-		this.content = content;
+		this.quantity = quantity;
 		this.product = product;
 	}
 
@@ -65,12 +62,12 @@ public class Cart implements Serializable  {
 		this.cartId = cartId;
 	}
 
-	public String getContent() {
-		return content;
+	public String getQuantity() {
+		return quantity;
 	}
 
-	public void setContent(String content) {
-		this.content = content;
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
 	}
 
 	public Product getProduct() {
@@ -83,19 +80,19 @@ public class Cart implements Serializable  {
 
 	@Override
 	public String toString() {
-		return "Cart [cartId=" + cartId + ", content=" + content + "]";
+		return "Cart [cartId=" + cartId + ", quantity=" + quantity + "]";
 	}
 	
 
 	public Cart(long cartId, String content) {
 		super();
 		this.cartId = cartId;
-		this.content = content;
+		this.quantity = quantity;
 	}
 
-	public Cart(String content, Product product) {
+	public Cart(String quantity, Product product) {
 		super();
-		this.content = content;
+		this.quantity = quantity;
 		this.product = product;
 	}
 
